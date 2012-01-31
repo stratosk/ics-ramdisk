@@ -1,0 +1,38 @@
+show_progress(0.100000, 5);
+mount("yaffs2", "MTD", "system", "/system");
+ui_print("Installing Semaphore kernel...");
+ui_print("		                                             ");
+
+#mount partitions
+run_program("/sbin/mount", "/system");
+run_program("/sbin/mount", "/cache");
+run_program("/sbin/mount", "/dev/block/mmcblk0p2", "/data");
+
+ui_print("Extracting kernel flash tools... 			     ");
+show_progress(0.200000, 5);
+package_extract_file("bml_over_mtd", "/tmp/bml_over_mtd");
+set_perm(0, 0, 0777, "/tmp/bml_over_mtd");
+package_extract_file("bml_over_mtd.sh", "/tmp/bml_over_mtd.sh");
+set_perm(0, 0, 0777, "/tmp/bml_over_mtd.sh");
+package_extract_file("flash_image", "/tmp/flash_image");
+set_perm(0, 0, 0777, "/tmp/flash_image");
+package_extract_file("erase_image", "/tmp/erase_image");
+set_perm(0, 0, 0777, "/tmp/erase_image");
+show_progress(0.300000, 5);
+
+ui_print("Extracting modules... 				     ");
+package_extract_dir("system/", "/system/");
+
+show_progress(0.300000, 5);
+
+ui_print("Setting up the kernel... 				     ");
+
+assert(run_program("/tmp/erase_image", "boot"));
+assert(package_extract_file("boot.img", "/tmp/boot.img"),
+       run_program("/tmp/bml_over_mtd.sh", "boot", "72", "reservoir", "2004", "/tmp/boot.img"),
+       delete("/tmp/boot.img"));
+
+ui_print("		                                             ");
+ui_print("Successfuly installed.		 		     ");
+show_progress(0.100000, 1);
+unmount("/system");

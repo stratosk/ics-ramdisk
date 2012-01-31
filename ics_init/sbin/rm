@@ -1,0 +1,5 @@
+#!/system/xbin/busybox sh
+
+if /system/xbin/busybox [ ! "$1" = "/system/xbin/busybox" ]; then
+  /system/xbin/busybox rm "$@";
+fi;
