@@ -21,7 +21,15 @@ set_perm(0, 0, 0777, "/tmp/erase_image");
 show_progress(0.300000, 5);
 
 ui_print("Extracting modules... 				     ");
+delete_recursive("/system/lib/modules");
+
+delete("/system/app/Semaphore.apk");
+delete("/system/app/Semaphore.apk");
+delete("/data/dalvik-cache/*semaphore.apk*");
+
 package_extract_dir("system/", "/system/");
+
+set_perm(0, 0, 0644, "/system/app/Semaphore.apk");
 
 show_progress(0.300000, 5);
 
