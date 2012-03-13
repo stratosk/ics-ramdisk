@@ -1,6 +1,6 @@
 #!/system/bin/sh
-#Mouse (USB host)
-#Unload mouse module
+#X-Box pad (USB host)
+#Unload X-Box pad module
 
 rmmod xpad
 rmmod joydev

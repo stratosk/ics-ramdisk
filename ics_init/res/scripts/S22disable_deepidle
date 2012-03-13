@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Deep Idle
+#Enable Deep Idle
+
+echo 0 > /sys/devices/virtual/misc/deepidle/enabled
