@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Radio FM
+#Load radio FM (si4709) module
+
+rmmod radio_si4709_i2c
