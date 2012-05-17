@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Fast charge support
+#Please use it with your own risk
+
+rmmod fastchg

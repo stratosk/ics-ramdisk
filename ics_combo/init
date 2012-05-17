@@ -72,7 +72,7 @@ $BB echo "mounting devices..."
 $BB mount -t proc proc /proc
 $BB mount -t sysfs sysfs /sys
 $BB mount -t yaffs2 /dev/block/mtdblock2 /system
-$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
+#$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
 
 KV=`$BB uname -r`
 $BB echo "version: $KV"
@@ -83,6 +83,7 @@ else
     $BB echo "updating modules..."
 
     $BB echo "removing old modules..."
+
     $BB rm /system/lib/modules/*
     $BB echo "updating modules..."
     $BB cp /files/modules/* /system/lib/modules/
@@ -115,43 +116,25 @@ else
     $BB chmod 644 /system/app/$APP
 fi
 
+$BB echo "command line:"
+$BB cat /proc/cmdline
+
 $BB echo "starting bootmode detection..."
-if $BB grep -q bootmode=2 /proc/cmdline ; then
-	# recovery boot
+if $BB grep -q bootmode=2 /proc/cmdline || $BB grep -q bootmode=9 /proc/cmdline ; then
+    # recovery boot
     $BB echo "found recovery command, preparing boot..."
     $BB echo "moving ics_rec_init to /"
-	$BB mv /ics_rec_init/* /
-	$BB echo 0 > /sys/class/power_supply/battery/charging_mode_booting
-elif ! $BB test -e /system/build.prop ; then
-	# emergency boot
-    $BB echo "build.prop not found, starting emergency boot..."
-    $BB umount /cache
-    erase_image cache
-    $BB mount -t yaffs2 /dev/block/mtdblock3 /cache
-    $BB mkdir /cache/recovery
-	$BB mount -t vfat /dev/block/mmcblk0p1 /sdcard	
-
-    $BB echo "checking cm9 update config /sdcard/cyanogenmod.cfg..."
-	UPDATE=$($BB cat /sdcard/cyanogenmod.cfg)
-	if $BB test -e $UPDATE ; then
-        $BB echo "cm9 update found, initializing extendedcommand..."
-		$BB echo "install_zip(\"`echo $UPDATE`\");" > /cache/recovery/extendedcommand
-  	else
-        $BB echo "cm9 update not found, doing nothing"
-    fi
-
-    $BB echo "moving ics_rec_init to /..."
     $BB mv /ics_rec_init/* /
-	$BB echo 0 > /sys/class/power_supply/battery/charging_mode_booting
+    $BB echo 0 > /sys/class/power_supply/battery/charging_mode_booting
 else
     $BB mv /ics_init/* /
 fi
 
 if $BB grep -q 1 /sys/class/power_supply/battery/charging_mode_booting ; then
-	# low power mode
+    # low power mode
     $BB echo "found charging_mode command"
-	$BB cp /lpm.rc /init.rc
-	$BB rm /init.aries.rc
+    $BB cp /lpm.rc /init.rc
+    $BB rm /init.aries.rc
 fi
 
 $BB echo "debug output:"
@@ -159,8 +142,8 @@ $BB echo "current /:"
 $BB ls -l /
 $BB echo "current /system:"
 $BB ls -l /system/
-$BB echo "current /cache:"
-$BB ls -l /cache/
+#$BB echo "current /cache:"
+#$BB ls -l /cache/
 $BB echo "current /system/lib/modules:"
 $BB ls -l /system/lib/modules/
 $BB echo "current /system/lib/hw:"
@@ -170,10 +153,10 @@ $BB echo "cleaning up..."
 $BB umount /sys
 $BB umount /proc
 $BB umount /system
-$BB umount /cache
+#$BB umount /cache
 $BB rm -r /files
 $BB rm -r /sdcard
-$BB rm /erase_image
+#$BB rm /erase_image
 
 # original initramfs directories not needed anymore,
 # busybox not needed anymore...
