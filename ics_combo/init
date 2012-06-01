@@ -71,11 +71,18 @@ $BB mknod /dev/block/mtdblock3 b 31 3
 $BB echo "mounting devices..."
 $BB mount -t proc proc /proc
 $BB mount -t sysfs sysfs /sys
+$BB echo 1 > /sys/kernel/req_recovery/enable
 $BB mount -t yaffs2 /dev/block/mtdblock2 /system
 #$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
 
 KV=`$BB uname -r`
 $BB echo "version: $KV"
+
+if $BB [ ! -d /system/lib/modules ]; then 
+    $BB echo "making modules directory"
+    $BB mkdir /system/lib/modules
+    $BB chmod 777 /system/lib/modules
+fi
 
 if $BB [ "`/busybox grep $KV /system/lib/modules/ansi_cprng.ko`" ]; then
     $BB echo "kernel files already installed, nothing to do"
@@ -150,6 +157,7 @@ $BB echo "current /system/lib/hw:"
 $BB ls -l /system/lib/hw/
 
 $BB echo "cleaning up..."
+$BB echo 0 > /sys/kernel/req_recovery/enable
 $BB umount /sys
 $BB umount /proc
 $BB umount /system
