@@ -1,0 +1,29 @@
+#!/system/bin/sh
+#Netfilter
+#Unload netfilter modules (tethering, firewall)
+
+rmmod ip6t_REJECT
+rmmod ip6t_LOG
+
+rmmod xt_NFLOG
+rmmod xt_connmark
+rmmod xt_multiport
+rmmod ipt_REDIRECT
+rmmod ipt_ULOG
+rmmod xt_state
+rmmod ipt_MASQUERADE
+rmmod iptable_nat
+rmmod ipt_REJECT
+rmmod ipt_LOG
+rmmod xt_TCPMSS
+rmmod xt_policy
+
+rmmod nf_nat_sip
+rmmod nf_nat_irc
+rmmod nf_nat_ftp
+rmmod nf_nat
+rmmod nf_conntrack_sip
+rmmod nf_conntrack_irc
+rmmod nf_conntrack_ftp
+
+

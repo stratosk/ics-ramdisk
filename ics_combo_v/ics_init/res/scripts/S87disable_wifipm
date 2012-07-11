@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#WiFi PM FAST
+#Enable PM FAST when suspend
+
+echo 0 > /sys/module/bcmdhd/parameters/wifi_pm

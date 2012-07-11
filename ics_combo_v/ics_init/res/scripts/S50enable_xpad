@@ -1,0 +1,6 @@
+#!/system/bin/sh
+#X-Box pad (USB host)
+#Load X-Box pad module
+
+insmod /system/lib/modules/joydev.ko
+insmod /system/lib/modules/xpad.ko
