@@ -5,10 +5,14 @@
 rmmod ip6t_REJECT
 rmmod ip6t_LOG
 
+rmmod xt_IDLETIMER
+rmmod xt_quota2
+rmmod xt_quota
 rmmod xt_NFLOG
 rmmod xt_connmark
 rmmod xt_multiport
 rmmod ipt_REDIRECT
+
 rmmod ipt_ULOG
 rmmod xt_state
 rmmod ipt_MASQUERADE

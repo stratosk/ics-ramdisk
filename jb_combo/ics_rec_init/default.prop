@@ -88,3 +88,5 @@ dalvik.vm.lockprof.threshold=500
 dalvik.vm.dexopt-flags=m=y
 net.bt.name=Android
 dalvik.vm.stack-trace-file=/data/anr/traces.txt
+ro.cwm.enable_key_repeat=true
+ro.cwm.repeatable_keys=114,115,139

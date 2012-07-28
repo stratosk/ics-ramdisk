@@ -11,5 +11,6 @@ for i in $MTD $MMC; do
 done;
 
 sleep 1
-rmmod sio-iosched
-rmmod deadline-iosched
+rmmod sio_iosched
+rmmod deadline_iosched
+rmmod cfq_isosched
