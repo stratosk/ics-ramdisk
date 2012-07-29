@@ -13,5 +13,5 @@ for i in $MTD $MMC; do
 done;
 
 sleep 1
-rmmod sio-iosched
-
+rmmod sio_iosched
+rmmod cfq_iosched
