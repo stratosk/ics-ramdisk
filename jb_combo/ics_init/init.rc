@@ -343,6 +343,8 @@ on boot
 # Run sysinit
     exec /system/bin/sysinit
 
+    start semaboot
+
     class_start core
     class_start main
 
@@ -375,8 +377,9 @@ on property:vold.decrypt=trigger_shutdown_framework
 ## Daemon processes to be run by init.
 ##
 
+
 # Semaphore boot patch
-#service semaboot /sbin/boot-patch.sh
+service semaboot /sbin/boot-patch.sh
 	user root
 	oneshot
 	disabled
