@@ -106,7 +106,7 @@ else
     else
 	$BB echo "/data/local/logger.ko, not found, skipping..."
     fi
-    $BB umount /data
+#    $BB umount /data
     
     if $BB [ ! -d /system/etc/init.d ]; then 
 	$BB echo "making init.d"
@@ -117,6 +117,8 @@ else
     $BB echo "coping kernel control apk"
     $BB rm /system/app/$APP
     $BB rm /data/dalvik-cache/*$APP*
+
+    $BB umount /data
 
     $BB cp /files/$APP /system/app/
     $BB chown 0.0 /system/app/$APP
