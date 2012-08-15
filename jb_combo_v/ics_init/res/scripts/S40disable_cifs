@@ -1,0 +1,8 @@
+#!/system/bin/sh
+#CIFS
+#Unload cifs module (mount Windows shares)
+
+rmmod cifs
+rmmod md4
+rmmod nls_utf8
+

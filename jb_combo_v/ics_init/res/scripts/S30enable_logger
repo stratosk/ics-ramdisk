@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Logger
+#Enable logger (must reboot)
+
+cp /system/lib/modules/logger.ko /data/local/logger.ko

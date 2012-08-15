@@ -1,0 +1,7 @@
+#!/system/bin/sh
+#Smooth UI
+#Enable Smooth UI tunable on governors
+
+echo 0 > /sys/devices/system/cpu/cpufreq/ondemand/smooth_ui
+echo 0 > /sys/devices/system/cpu/cpufreq/conservative/smooth_ui
+echo 0 > /sys/devices/system/cpu/cpufreq/smartass/smooth_ui
