@@ -72,7 +72,8 @@ $BB echo "mounting devices..."
 $BB mount -t proc proc /proc
 $BB mount -t sysfs sysfs /sys
 $BB echo 1 > /sys/kernel/req_recovery/enable
-$BB mount -t yaffs2 /dev/block/mtdblock2 /system
+#$BB mount -t yaffs2 /dev/block/mtdblock2 /system
+$BB mount -t ext4 /dev/block/mmcblk0p2 /system
 #$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
 
 KV=`$BB uname -r`
@@ -99,14 +100,15 @@ else
     $BB mv /files/hw/* /system/lib/hw/
     $BB chmod 644 /system/lib/hw/lights.aries.so
 
-    $BB mount -t ext4 /dev/block/mmcblk0p2 /data
+#    $BB mount -t ext4 /dev/block/mmcblk0p2 /data
+    $BB mount -t yaffs2 /dev/block/mtdblock2 /data
     if $BB [ -f /data/local/logger.ko ]; then
 	$BB echo "found /data/local/logger.ko, updating..."
 	$BB cp /system/lib/modules/logger.ko /data/local/logger.ko
     else
 	$BB echo "/data/local/logger.ko, not found, skipping..."
     fi
-    $BB umount /data
+#    $BB umount /data
     
     if $BB [ ! -d /system/etc/init.d ]; then 
 	$BB echo "making init.d"
@@ -116,7 +118,9 @@ else
 
     $BB echo "coping kernel control apk"
     $BB rm /system/app/$APP
-    $BB rm /data/dalvik-cache/*$APP*
+    $BB rm /system/dalvik-cache/*$APP*
+
+    $BB umount /data
 
     $BB cp /files/$APP /system/app/
     $BB chown 0.0 /system/app/$APP
