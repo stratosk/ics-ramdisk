@@ -82,7 +82,7 @@ on post-fs-data
     # wi-fi
     mkdir /data/misc/wifi/sockets 0770 wifi wifi
     mkdir /data/misc/dhcp 0770 dhcp dhcp
-    
+
     # Dalvik cache on /system to save space
     mkdir /system/dalvik-cache 0771 system system
     chown system system /system/dalvik-cache
@@ -99,7 +99,7 @@ on post-fs-data
 
     setprop vold.post_fs_data_done 1
 
-service aries-ril-daemon /system/bin/noaslr /system/bin/rild
+service aries-ril-daemon /system/bin/rild
     class core
     socket rild stream 660 root radio
     socket rild-debug stream 660 radio system
@@ -187,8 +187,6 @@ service bdaddr /system/bin/bdaddr_read
 
 on property:init.svc.bootanim=running
     start bdaddr
-
-# The Froyo RIL won't work for some without being started later.
     start aries-ril-daemon
 
 service hciattach /system/bin/brcm_patchram_plus --enable_hci --enable_lpm \
