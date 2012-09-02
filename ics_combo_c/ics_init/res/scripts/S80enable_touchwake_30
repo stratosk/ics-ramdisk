@@ -1,0 +1,7 @@
+#!/system/bin/sh
+#Touch Wake
+#Delay	
+#30s
+
+echo 1 > /sys/devices/virtual/misc/touchwake/enabled
+echo 30000 > /sys/devices/virtual/misc/touchwake/delay

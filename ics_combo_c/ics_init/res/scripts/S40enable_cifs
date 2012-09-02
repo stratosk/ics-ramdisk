@@ -1,0 +1,7 @@
+#!/system/bin/sh
+#CIFS
+#Load cifs module (mount Windows shares)
+
+insmod /system/lib/modules/cifs.ko
+insmod /system/lib/modules/md4.ko
+insmod /system/lib/modules/nls_utf8.ko

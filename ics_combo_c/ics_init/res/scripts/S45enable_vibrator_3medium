@@ -1,0 +1,6 @@
+#!/system/bin/sh
+#Vibrator
+#Vibration level
+#Medium
+
+echo 33400 > /sys/devices/virtual/timed_output/vibrator/duty

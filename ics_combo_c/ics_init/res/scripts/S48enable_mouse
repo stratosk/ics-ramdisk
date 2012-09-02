@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Mouse (USB host)
+#Load mouse module
+
+insmod /system/lib/modules/mousedev.ko
