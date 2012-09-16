@@ -34,7 +34,7 @@
 # 
 
 
-APP='Semaphore.apk'
+#APP='Semaphore.apk'
 
 export _PATH="$PATH"
 export PATH=/
@@ -71,10 +71,11 @@ $BB mknod /dev/block/mtdblock3 b 31 3
 $BB echo "mounting devices..."
 $BB mount -t proc proc /proc
 $BB mount -t sysfs sysfs /sys
-$BB echo 1 > /sys/kernel/req_recovery/enable
+#$BB echo 1 > /sys/kernel/req_recovery/enable
 #$BB mount -t yaffs2 /dev/block/mtdblock2 /system
 $BB mount -t ext4 /dev/block/mmcblk0p2 /system
-#$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
+$BB mount -t yaffs2 /dev/block/mtdblock3 /cache
+$BB mv /cache/boot.txt /cache/boot.bak
 
 KV=`$BB uname -r`
 $BB echo "version: $KV"
@@ -116,15 +117,15 @@ else
 	$BB chmod 777 /system/etc/init.d
     fi
 
-    $BB echo "coping kernel control apk"
-    $BB rm /system/app/$APP
-    $BB rm /system/dalvik-cache/*$APP*
+ #   $BB echo "coping kernel control apk"
+ #   $BB rm /system/app/$APP
+ #   $BB rm /system/dalvik-cache/*$APP*
 
     $BB umount /data
 
-    $BB cp /files/$APP /system/app/
-    $BB chown 0.0 /system/app/$APP
-    $BB chmod 644 /system/app/$APP
+#    $BB cp /files/$APP /system/app/
+#    $BB chown 0.0 /system/app/$APP
+#    $BB chmod 644 /system/app/$APP
 fi
 
 $BB echo "command line:"
@@ -141,6 +142,7 @@ else
     $BB mv /ics_init/* /
 fi
 
+    $BB echo "before found charging_mode command"
 if $BB grep -q 1 /sys/class/power_supply/battery/charging_mode_booting ; then
     # low power mode
     $BB echo "found charging_mode command"
@@ -161,11 +163,12 @@ $BB echo "current /system/lib/hw:"
 $BB ls -l /system/lib/hw/
 
 $BB echo "cleaning up..."
-$BB echo 0 > /sys/kernel/req_recovery/enable
+#$BB echo 0 > /sys/kernel/req_recovery/enable
 $BB umount /sys
 $BB umount /proc
 $BB umount /system
-#$BB umount /cache
+$BB cp /boot.txt /cache/
+$BB umount /cache
 $BB rm -r /files
 $BB rm -r /sdcard
 #$BB rm /erase_image
