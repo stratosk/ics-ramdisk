@@ -94,7 +94,7 @@ loglevel 9
     write /dev/cpuctl/bg_non_interactive/cpu.shares 52
 
 on fs
-    mount ext4 /dev/block/mmcblk0p2 /system ro noatime nodev nomblk_io_submit wait errors=panic
+    mount ext4 /dev/block/mmcblk0p2 /system rw noatime nodev nomblk_io_submit wait errors=panic
 # mount mtd partitions
     # Mount /system rw first to give the filesystem a chance to save a checkpoint
     #mount yaffs2 mtd@system /system
