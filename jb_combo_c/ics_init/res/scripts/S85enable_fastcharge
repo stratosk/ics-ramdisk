@@ -1,0 +1,5 @@
+#!/system/bin/sh
+#Fast charge support
+#Please use it at your own risk
+
+insmod /system/lib/modules/fastchg.ko
