@@ -1,6 +1,0 @@
-#!/system/bin/sh
-#X-Box pad (USB host)
-#Unload X-Box pad module
-
-rmmod xpad
-rmmod joydev

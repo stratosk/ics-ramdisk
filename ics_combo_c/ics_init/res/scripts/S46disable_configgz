@@ -1,5 +1,0 @@
-#!/system/bin/sh
-#Config.gz
-#Enable /proc/config.gz
-
-rmmod configs

@@ -1,6 +1,0 @@
-#!/system/bin/sh
-#Vibrator
-#Vibration level
-#Default (Max)
-
-echo 43640 > /sys/devices/virtual/timed_output/vibrator/duty

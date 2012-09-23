@@ -1,5 +1,0 @@
-#!/system/bin/sh
-#Bigmem 
-#Enable Big memory reservation (must reboot)
-
-echo 0 > /sys/kernel/bigmem/enable

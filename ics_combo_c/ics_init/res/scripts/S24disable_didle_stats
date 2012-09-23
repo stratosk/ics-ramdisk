@@ -1,5 +1,0 @@
-#!/system/bin/sh
-#Deep Idle Statistics
-#Enable Deep Idle Statistics
-
-echo 0 > /sys/devices/virtual/misc/deepidle/stats_enabled

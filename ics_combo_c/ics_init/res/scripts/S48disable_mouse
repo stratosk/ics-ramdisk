@@ -1,5 +1,0 @@
-#!/system/bin/sh
-#Mouse (USB host)
-#Unload mouse module
-
-rmmod mousedev
