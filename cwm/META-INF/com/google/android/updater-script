@@ -3,9 +3,9 @@ ui_print("Installing Semaphore kernel...");
 ui_print("		                                             ");
 
 #mount partitions
-run_program("/sbin/mount", "/data");
-run_program("/sbin/mount", "/cache");
-run_program("/sbin/mount", "/dev/block/mmcblk0p2", "/system");
+#run_program("/sbin/mount", "/data");
+#run_program("/sbin/mount", "/cache");
+#run_program("/sbin/mount", "/dev/block/mmcblk0p2", "/system");
 
 ui_print("Extracting kernel flash tools... 			     ");
 show_progress(0.200000, 2);
@@ -31,4 +31,4 @@ assert(package_extract_file("boot.img", "/tmp/boot.img"),
 ui_print("		                                             ");
 ui_print("Successfuly installed.		 		     ");
 show_progress(0.100000, 2);
-unmount("/system");
+#unmount("/system");

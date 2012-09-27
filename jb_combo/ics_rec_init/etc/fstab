@@ -1,0 +1,6 @@
+/dev/block/mtdblock3 /cache yaffs2 rw
+/dev/lvpool/userdata /data ext4 rw
+/dev/block/mtdblock2 /datadata yaffs2 rw
+/dev/block/mmcblk1p1 /emmc vfat rw
+/dev/lvpool/system /system ext4 rw
+/dev/block/mmcblk0p1 /sdcard vfat rw
