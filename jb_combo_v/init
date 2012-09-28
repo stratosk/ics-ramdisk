@@ -63,15 +63,22 @@ $BB echo "generating device nodes..."
 $BB mknod /dev/block/mmcblk0 b 179 0
 $BB mknod /dev/block/mmcblk0p1 b 179 1
 $BB mknod /dev/block/mmcblk0p2 b 179 2
+$BB mknod /dev/block/mmcblk0p3 b 179 3
 $BB mknod /dev/block/mtdblock2 b 31 2
 $BB mknod /dev/block/mtdblock3 b 31 3
+$BB mknod /dev/urandom c 1 9
 
 $BB echo "mounting devices..."
 $BB mount -t proc proc /proc
 $BB mount -t sysfs sysfs /sys
 $BB echo 1 > /sys/kernel/req_recovery/enable
-#$BB mount -t yaffs2 /dev/block/mtdblock2 /system
-$BB mount -t ext4 /dev/block/mmcblk0p2 /system
+$BB mv /files/charger /
+$BB mv /files/init /
+
+/lvm/sbin/lvm vgscan --mknodes --ignorelockingfailure
+/lvm/sbin/lvm vgchange -aly --ignorelockingfailure
+
+$BB mount -t ext4 /dev/lvpool/system /system
 $BB mount -t yaffs2 /dev/block/mtdblock3 /cache
 $BB mv /cache/boot.txt /cache/boot.bak
 
