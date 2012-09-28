@@ -58,8 +58,6 @@ $BB mkdir data
 
 $BB mkdir /dev
 $BB mkdir /dev/block
-$BB mkdir /lvm
-$BB chmod 755 /lvm
 
 $BB echo "generating device nodes..."
 $BB mknod /dev/block/mmcblk0 b 179 0
