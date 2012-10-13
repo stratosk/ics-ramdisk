@@ -3,4 +3,4 @@
 #Vibration level
 #Default (Max)
 
-echo 43640 > /sys/devices/virtual/timed_output/vibrator/duty
+echo 100 > /sys/devices/virtual/misc/pwm_duty
