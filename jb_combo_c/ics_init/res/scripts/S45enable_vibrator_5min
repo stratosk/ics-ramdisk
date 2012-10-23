@@ -3,4 +3,4 @@
 #Vibration level
 #Minimum
 
-echo 23500 > /sys/devices/virtual/timed_output/vibrator/duty
+echo 5 > /sys/devices/virtual/misc/pwm_duty
