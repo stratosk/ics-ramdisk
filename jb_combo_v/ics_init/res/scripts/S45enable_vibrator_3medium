@@ -3,4 +3,4 @@
 #Vibration level
 #Medium
 
-echo 33400 > /sys/devices/virtual/timed_output/vibrator/duty
+echo 50 > /sys/devices/virtual/misc/pwm_duty
