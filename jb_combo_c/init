@@ -91,7 +91,10 @@ if $BB [ ! -d /system/lib/modules ]; then
     $BB chmod 777 /system/lib/modules
 fi
 
-if $BB [ "`/busybox grep $KV /system/lib/modules/ansi_cprng.ko`" ]; then
+INSTALLED_VER=$($BB cat /system/.semaphore)
+$BB echo $INSTALLED_VER
+
+if $BB [ "`/busybox grep $KV /system/lib/modules/ansi_cprng.ko`" ] && $BB [ "$KV" = "$INSTALLED_VER" ]; then
     $BB echo "kernel files already installed, nothing to do"
 else
     $BB echo "updating modules..."
@@ -102,11 +105,13 @@ else
     $BB echo "updating modules..."
     $BB cp /files/modules/* /system/lib/modules/
 
+    $BB echo $KV > /system/.semaphore
+
     $BB echo "updating lights.aries.so..."
     $BB mv /files/hw/* /system/lib/hw/
     $BB chmod 644 /system/lib/hw/lights.aries.so
 
-    $BB mount -t yaffs2 /dev/block/mtdblock2 /data
+    $BB mount -t ext4 /dev/lvpool/userdata /data
     if $BB [ -f /data/local/logger.ko ]; then
 	$BB echo "found /data/local/logger.ko, updating..."
 	$BB cp /system/lib/modules/logger.ko /data/local/logger.ko
@@ -138,7 +143,6 @@ else
     $BB mv /ics_init/* /
 fi
 
-    $BB echo "before found charging_mode command"
 if $BB grep -q 1 /sys/class/power_supply/battery/charging_mode_booting ; then
     # low power mode
     $BB echo "found charging_mode command"

@@ -274,6 +274,11 @@ on property:ro.secure=0
 
 service recovery /sbin/recovery
 
+# Load Semaphore Auto Brightness driver
+service sema_autobr /sbin/sema_autobr
+    user root
+    oneshot
+	
 # adbd is controlled by the persist.service.adb.enable system property
 service adbd /sbin/adbd
     disabled
