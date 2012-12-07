@@ -115,6 +115,7 @@ else
     if $BB [ -f /data/local/logger.ko ]; then
 	$BB echo "found /data/local/logger.ko, updating..."
 	$BB cp /system/lib/modules/logger.ko /data/local/logger.ko
+	$BB chmod 600 /data/local/logger.ko
     else
 	$BB echo "/data/local/logger.ko, not found, skipping..."
     fi
