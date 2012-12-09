@@ -71,6 +71,9 @@ on fs
     chown radio radio /sys/class/sec/uart_switch/UART_SEL/value
     chmod 660 /sys/class/sec/uart_switch/UART_SEL/value
 
+# load wifi module
+    insmod /system/lib/modules/bcmdhd.ko
+
 on post-fs
     chown system system /datadata
     chmod 0771 /datadata
@@ -134,7 +137,7 @@ service wpa_supplicant /system/bin/wpa_supplicant \
 	disabled
 	oneshot
 
-service dhcpcd_wlan0 /system/bin/dhcpcd -aABKL
+service dhcpcd_wlan0 /system/bin/dhcpcd -aABDKL
     class main
     disabled
     oneshot
