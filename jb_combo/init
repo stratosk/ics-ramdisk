@@ -101,7 +101,7 @@ $BB echo $INSTALLED_VER
 
 if $BB [ "`/busybox grep $KV /system/lib/modules/ansi_cprng.ko`" ] && $BB [ "$KV" = "$INSTALLED_VER" ]; then
     $BB echo "kernel files already installed, nothing to do"
-else
+elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
     $BB echo "updating modules..."
 
     $BB echo "removing old modules..."
