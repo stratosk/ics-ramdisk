@@ -110,8 +110,6 @@ elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
     $BB echo "updating modules..."
     $BB cp /files/modules/* /system/lib/modules/
 
-    $BB echo $KV > /system/.semaphore
-
     $BB echo "updating lights.aries.so..."
     $BB mv /files/hw/* /system/lib/hw/
     $BB chmod 644 /system/lib/hw/lights.aries.so
@@ -134,6 +132,8 @@ elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
     $BB umount /data
 
 fi
+
+$BB echo $KV > /system/.semaphore
 
 $BB echo "command line:"
 $BB cat /proc/cmdline
