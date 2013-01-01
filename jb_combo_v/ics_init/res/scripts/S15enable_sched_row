@@ -3,7 +3,7 @@
 #Change I/O scheduler
 #ROW I/O
 
-insmod /system/lib/modules/sio-iosched.ko
+insmod /system/lib/modules/row-iosched.ko
 
 MTD=`ls -d /sys/block/mtd*`;
 MMC=`ls -d /sys/block/mmc*`;

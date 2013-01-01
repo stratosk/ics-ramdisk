@@ -101,7 +101,7 @@ $BB echo $INSTALLED_VER
 
 if $BB [ "`/busybox grep $KV /system/lib/modules/ansi_cprng.ko`" ] && $BB [ "$KV" = "$INSTALLED_VER" ]; then
     $BB echo "kernel files already installed, nothing to do"
-else
+elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
     $BB echo "updating modules..."
 
     $BB echo "removing old modules..."
@@ -109,8 +109,6 @@ else
     $BB rm /system/lib/modules/*
     $BB echo "updating modules..."
     $BB cp /files/modules/* /system/lib/modules/
-
-    $BB echo $KV > /system/.semaphore
 
     $BB echo "updating lights.aries.so..."
     $BB mv /files/hw/* /system/lib/hw/
@@ -133,6 +131,10 @@ else
 
     $BB umount /data
 
+fi
+
+if $BB [ "$KV" != "$INSTALLED_VER" ]; then
+	$BB echo $KV > /system/.semaphore
 fi
 
 $BB echo "command line:"
