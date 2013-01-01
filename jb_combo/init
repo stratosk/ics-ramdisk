@@ -133,7 +133,9 @@ elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
 
 fi
 
-$BB echo $KV > /system/.semaphore
+if $BB [ "$KV" != "$INSTALLED_VER" ]; then
+	$BB echo $KV > /system/.semaphore
+fi
 
 $BB echo "command line:"
 $BB cat /proc/cmdline
