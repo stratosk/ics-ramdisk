@@ -85,6 +85,7 @@ done
 
 $BB mount -t ext4 /dev/lvpool/system /system
 $BB mount -t yaffs2 /dev/block/mtdblock3 /cache
+$BB mount -t ext4 /dev/lvpool/userdata /data
 $BB mv /cache/boot.txt /cache/boot.bak
 
 KV=`$BB uname -r`
@@ -110,11 +111,6 @@ elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
     $BB echo "updating modules..."
     $BB cp /files/modules/* /system/lib/modules/
 
-    $BB echo "updating lights.aries.so..."
-    $BB mv /files/hw/* /system/lib/hw/
-    $BB chmod 644 /system/lib/hw/lights.aries.so
-
-    $BB mount -t ext4 /dev/lvpool/userdata /data
     if $BB [ -f /data/local/logger.ko ]; then
 	$BB echo "found /data/local/logger.ko, updating..."
 	$BB cp /system/lib/modules/logger.ko /data/local/logger.ko
@@ -129,9 +125,19 @@ elif $BB [ "`/busybox grep $KV /files/modules/ansi_cprng.ko`" ]; then
 	$BB chmod 777 /system/etc/init.d
     fi
 
-    $BB umount /data
-
 fi
+
+if $BB [ -f /data/local/.bln ]; then
+    $BB echo "updating BLN lights.aries.so..."
+    $BB cp /files/hw/lights.aries.so.bln /system/lib/hw/lights.aries.so
+else
+    $BB echo "updating CM led lights.aries.so..."
+    $BB cp /files/hw/lights.aries.so.cm /system/lib/hw/lights.aries.so
+fi
+
+$BB chmod 644 /system/lib/hw/lights.aries.so
+
+$BB umount /data
 
 if $BB [ "$KV" != "$INSTALLED_VER" ]; then
 	$BB echo $KV > /system/.semaphore
