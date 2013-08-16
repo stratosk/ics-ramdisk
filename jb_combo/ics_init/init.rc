@@ -284,6 +284,9 @@ on post-fs-data
 
     insmod /data/local/logger.ko
 
+# Include extra init file
+    import /init.cm.rc
+
 on boot
     # interactive governor
     chown system system /sys/devices/system/cpu/cpufreq/interactive/timer_rate
@@ -519,8 +522,8 @@ service console /system/bin/sh
     user shell
     group log
 
-service auditd /system/bin/auditd -k
-    class main
+#service auditd /system/bin/auditd -k
+#    class main
 
 on property:ro.debuggable=1
     start console

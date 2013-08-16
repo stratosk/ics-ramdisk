@@ -1,6 +1,5 @@
 # su daemon
 service su_daemon /system/xbin/su --daemon
-    class main
     oneshot
 
 on property:persist.sys.root_access=0

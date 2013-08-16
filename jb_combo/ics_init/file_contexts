@@ -45,6 +45,7 @@
 /dev/console		u:object_r:console_device:s0
 /dev/cpuctl(/.*)?	u:object_r:cpuctl_device:s0
 /dev/device-mapper	u:object_r:dm_device:s0
+/dev/eac		u:object_r:audio_device:s0
 /dev/full		u:object_r:full_device:s0
 /dev/fuse		u:object_r:fuse_device:s0
 /dev/graphics(/.*)?	u:object_r:graphics_device:s0
@@ -219,6 +220,9 @@
 /dev/onedram                                        u:object_r:radio_device:s0
 /radio(/.*)?                                        u:object_r:rild_file:s0
 
+# Bluetooth
+/dev/s3c2410_serial0                                u:object_r:hci_attach_dev:s0
+
 # GFX
 /dev/pvrsrvkm                                       u:object_r:powervr_device:s0
 /system/vendor/bin/pvrsrvinit                       u:object_r:pvrsrvinit_exec:s0
@@ -241,11 +245,12 @@
 # Bluetooth
 /system/bin/bdaddr_read                             u:object_r:bdaddr_read_exec:s0
 
-# Advanced settings (TODO: doesn't seem to get set without restorecon)
-# TODO: also need to secure the permission of (some of) these devices
+# Advanced settings
+# TODO: sysfs_writable may not be a good choice
 /sys/class/misc/notification/bl_timeout             u:object_r:sysfs_writable:s0
 /sys/class/misc/pwm_duty/pwm_duty                   u:object_r:sysfs_writable:s0
 /sys/class/mdnieset_ui/switch_mdnieset_ui/mdnieset_ui_file_cmd  u:object_r:sysfs_writable:s0
 /sys/class/misc/dockaudio/(.*)_enable               u:object_r:sysfs_writable:s0
 /sys/devices/virtual/misc/color_tuning/(.*)         u:object_r:sysfs_writable:s0
 /sys/devices/virtual/misc/voodoo_sound/(.*)         u:object_r:sysfs_writable:s0
+/sys/module/bcmdhd/parameters/wifi_pm		    u:object_r:sysfs_writable:s0
