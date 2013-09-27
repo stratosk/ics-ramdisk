@@ -167,6 +167,8 @@ fi
 $BB echo "debug output:"
 $BB echo "current /:"
 $BB ls -l /
+$BB echo "current /sbin:"
+$BB ls -l /sbin/
 $BB echo "current /system:"
 $BB ls -l /system/
 #$BB echo "current /cache:"
@@ -175,6 +177,11 @@ $BB echo "current /system/lib/modules:"
 $BB ls -l /system/lib/modules/
 $BB echo "current /system/lib/hw:"
 $BB ls -l /system/lib/hw/
+
+$BB echo "PATH:"
+$BB echo $PATH
+$BB echo "_PATH:"
+$BB echo %{_PATH}
 
 $BB echo "cleaning up..."
 $BB echo 0 > /sys/kernel/req_recovery/enable
