@@ -33,6 +33,14 @@ on early-init
     chown system system /selinux/commit_pending_bools
     chown system system /sys/fs/selinux/commit_pending_bools
 
+    # Allow system UID to setenforce and set booleans.
+    chown system system /selinux/enforce
+    chown system system /sys/fs/selinux/enforce
+    chown -R system system /selinux/booleans
+    chown -R system system /sys/fs/selinux/booleans
+    chown system system /selinux/commit_pending_bools
+    chown system system /sys/fs/selinux/commit_pending_bools
+
 on init
 
 sysclktz 0
@@ -226,6 +234,7 @@ on post-fs-data
     mkdir /data/misc/bluetooth 0770 system system
     mkdir /data/misc/keystore 0700 keystore keystore
     mkdir /data/misc/keychain 0771 system system
+    mkdir /data/misc/radio 0770 system radio
     mkdir /data/misc/sms 0770 system radio
     mkdir /data/misc/zoneinfo 0775 system system
     mkdir /data/misc/vpn 0770 system vpn
