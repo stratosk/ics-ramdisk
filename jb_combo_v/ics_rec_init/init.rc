@@ -68,7 +68,6 @@ service ueventd /sbin/ueventd
     critical
 
 service recovery /sbin/recovery
-
 service setup_adbd /sbin/setup_adbd
     oneshot
 

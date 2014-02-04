@@ -21,10 +21,10 @@ ro.build.type=userdebug
 ro.build.user=jenkins
 ro.build.host=cyanogenmod
 ro.build.tags=test-keys
-ro.product.model=SGH-T959
+ro.product.model=GT-I9000
 ro.product.brand=samsung
-ro.product.name=SGH-T959
-ro.product.device=SGH-T959
+ro.product.name=GT-I9000
+ro.product.device=GT-I9000
 ro.product.board=aries
 ro.product.cpu.abi=armeabi-v7a
 ro.product.cpu.abi2=armeabi
@@ -34,12 +34,12 @@ ro.product.locale.region=US
 ro.wifi.channels=
 ro.board.platform=s5pc110
 # ro.build.product is obsolete; use ro.product.device
-ro.build.product=SGH-T959
+ro.build.product=GT-I9000
 # Do not try to parse ro.build.description or .fingerprint
-ro.build.description=soju-user 2.3.5 GINGERBREAD XXJVT release-keys
-ro.build.fingerprint=google/soju/crespo:2.3.4/GRJ22/121341:user/release-keys
+ro.build.description=GT-I9000-user 2.3.5 GINGERBREAD XXJVT release-keys
+ro.build.fingerprint=samsung/GT-I9000/GT-I9000:2.3.5/GINGERBREAD/XXJVT:user/release-keys
 ro.build.characteristics=default
-ro.cm.device=vibrantmtd
+ro.cm.device=galaxysmtd
 # end build properties
 #
 # system.prop for smdkc110
