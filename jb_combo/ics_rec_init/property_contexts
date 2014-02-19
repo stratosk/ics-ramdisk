@@ -58,3 +58,4 @@ ctl.                    u:object_r:ctl_default_prop:s0
 #line 1 "device/samsung/aries-common/sepolicy/property_contexts"
 rild.                   u:object_r:rild_prop:s0
 net.pdp0                u:object_r:radio_prop:s0
+bt.                     u:object_r:bluetooth_prop:s0
