@@ -1,6 +1,8 @@
 #!/sbin/busybox sh
 #Semaphore Auto Brightness
 
+/sbin/busybox mv /afm/* /tmp/
+
 if /sbin/busybox [ ! -f /system/.disable_autobr ]; then
 
 echo 1 > /sys/devices/virtual/input/input7/enable
